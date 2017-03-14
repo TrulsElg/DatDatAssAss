@@ -4,11 +4,13 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.Scanner;
 
-Scanner reader = new Scanner(System.in);
-String testOvelser = "1.Markløft\n2.Benkpress\n3.Knebøy\n4.FapFapFap";
-String line = "------------------------------------------------------------------------------------------------------";
+
 
 public class Main {
+	Scanner reader = new Scanner(System.in);
+	String testOvelser = "1.Markløft\n2.Benkpress\n3.Knebøy\n4.FapFapFap";
+	String line = "------------------------------------------------------------------------------------------------------";
+
 
     public static void main(String[] args) {
         DatabaseManager dbc = new DatabaseManager();
@@ -19,15 +21,11 @@ public class Main {
         //Person person = new Person("Truls","Elgaaen");
         //pdb.insert("Test");
         //pdb.deletePersonTable("Test");
-        pdb.makeQuery("Test");
+        //pdb.makeQuery("Test");
         Main tb = new Main();
 		tb.run();
     }
-	
-	public static void main(String[] args) {
-		Main tb = new Main();
-		tb.run();
-	}
+
 
 	public void run(){
 		System.out.println("Treningsappen æTrene");
