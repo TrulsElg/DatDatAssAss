@@ -14,12 +14,7 @@ public class TreningsLoggStyrer {
           // Henter ut alle okter etter dato-grense i et ResultSet
           String sqlQuery = "SELECT * FROM treningsokt WHERE dato>" + dato_grense;
           TreningsLoggStyrer tls = new TreningsLoggStyrer();
-          tls.makeQuery(root, sqlQuery);
-
-          Statement stmt = conn.createStatement();
-          String sql;
-          sql = "SELECT id, first, last, age FROM Employees";
-          ResultSet rs = stmt.executeQuery(sql);
+          ResultSet rs = tls.makeQuery(root, sqlQuery);
 
           // Teller opp treningsOkter etter dato-grensen
           int treningsOkter= 0;
