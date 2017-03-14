@@ -5,7 +5,6 @@ package entities;
  */
 public class Ovelse {
 
-    private int id;
     private String navn;
     private int belastning;
     private int antReps;
@@ -16,14 +15,6 @@ public class Ovelse {
         this.belastning = belastning;
         this.antReps = antReps;
         this.antSett = antSett;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNavn() {
