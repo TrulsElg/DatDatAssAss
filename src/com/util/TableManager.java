@@ -75,14 +75,13 @@ public class TableManager {
     public ResultSet makeQuery(String databaseNavn, String sqlQuery){
         Connection connection = null;
         Statement statement = null;
+        ResultSet rs = null;
 
         try {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement=connection.createStatement();
 
-            ResultSet rs = statement.executeQuery(sqlQuery);
-
-            return rs;
+            rs = statement.executeQuery(sqlQuery);
 
         } catch (SQLException se){
             se.printStackTrace();
@@ -105,5 +104,7 @@ public class TableManager {
                 }
             }
         }
+
+        return rs;
     }
 }

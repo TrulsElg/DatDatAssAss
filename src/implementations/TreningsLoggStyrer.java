@@ -1,6 +1,8 @@
 package implementations;
 
 import java.sql.*;
+import java.util.Calendar;
+
 import com.util.TableManager;
 
 public class TreningsLoggStyrer {
@@ -13,8 +15,8 @@ public class TreningsLoggStyrer {
 
           // Henter ut alle okter etter dato-grense i et ResultSet
           String sqlQuery = "SELECT * FROM treningsokt WHERE dato>" + dato_grense;
-          TreningsLoggStyrer tls = new TreningsLoggStyrer();
-          ResultSet rs = tls.makeQuery(root, sqlQuery);
+          TableManager tls = new TableManager();
+          ResultSet rs = tls.makeQuery("root", sqlQuery);
 
           // Teller opp treningsOkter etter dato-grensen
           int treningsOkter= 0;
