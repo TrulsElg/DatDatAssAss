@@ -7,7 +7,7 @@ import com.util.TableManager;
 
 public class TreningsLoggStyrer {
 
-  public int getTreningsOkter (int dager) throws SQLException {
+  public int getAntallTreningsOkter (int dager) throws SQLException {
           // Finner dato-grensen
           Calendar today = Calendar.getInstance();            // dato og tid akkurat nå
           today.set(Calendar.DATE, - dager);                  // trekker ifra gitt antall dager
@@ -19,17 +19,17 @@ public class TreningsLoggStyrer {
           ResultSet rs = tls.makeQuery("root", sqlQuery);
 
           // Teller opp treningsOkter etter dato-grensen
-          int treningsOkter= 0;
+          int antallTreningsOkter= 0;
           if (!rs.next()) {
               //then there are no rows.
               System.out.println("No records found");
           }
           else {
               do {
-                  treningsOkter++;
+                  antallTreningsOkter++;
               } while (rs.next());
           }
 
-          return treningsOkter;
+          return antallTreningsOkter;
       }
 }

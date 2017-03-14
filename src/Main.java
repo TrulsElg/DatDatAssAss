@@ -1,4 +1,5 @@
 import com.util.DatabaseManager;
+import com.util.TableManager;
 import implementations.PersonDatabase;
 import java.sql.Date;
 import java.util.Calendar;
@@ -22,8 +23,10 @@ public class Main {
         //pdb.insert("Test");
         //pdb.deletePersonTable("Test");
         //pdb.makeQuery("Test");
-        Main tb = new Main();
-		tb.run();
+		TableManager tbm = new TableManager();
+		tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
+        //Main tb = new Main();
+		//tb.run();
     }
 
 

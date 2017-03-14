@@ -84,6 +84,7 @@ public class TableManager {
             statement=connection.createStatement();
 
             rs = statement.executeQuery(sqlQuery);
+            //tellResultSet(rs);
 
         } catch (SQLException se){
             se.printStackTrace();
@@ -108,5 +109,20 @@ public class TableManager {
         }
 
         return rs;
+    }
+
+    private void tellResultSet(ResultSet rs) throws SQLException{
+        int resultat= 0;
+        if (!rs.next()) {
+            //then there are no rows.
+            System.out.println("No records found");
+        }
+        else {
+            do {
+                resultat++;
+            } while (rs.next());
+        }
+
+        System.out.println(resultat + " antall resultater");
     }
 }
