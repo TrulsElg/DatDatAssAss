@@ -72,7 +72,7 @@ public class TableManager {
         }
     }
 
-    public void makeQuery(String databaseNavn){
+    public ResultSet makeQuery(String databaseNavn, String sqlQuery){
         Connection connection = null;
         Statement statement = null;
 
@@ -80,21 +80,9 @@ public class TableManager {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement=connection.createStatement();
 
-            String sqlQuery = "SELECT id, first_name, last_name FROM person";
             ResultSet rs = statement.executeQuery(sqlQuery);
 
-            //Retrieves values from a table with fields id, first_name, last_name
-            while(rs.next()){
-                //Retrieve by column name
-                int id  = rs.getInt("id");
-                String first = rs.getString("first_name");
-                String last = rs.getString("last_name");
-
-                //Display values
-                System.out.print("ID: " + id);
-                System.out.print(", First: " + first);
-                System.out.println(", Last: " + last);
-            }
+            return rs;
 
         } catch (SQLException se){
             se.printStackTrace();
