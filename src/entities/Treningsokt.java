@@ -12,7 +12,7 @@ public class Treningsokt {
     private int dagsform;
     private ArrayList<Resultat> resultater = new ArrayList<Resultat>();
 
-    public TreningsOkt(int dagsform, ArrayList<Resultat> resultater, Calendar start, Calendar Slutt){
+    public Treningsokt(int dagsform, ArrayList<Resultat> resultater, Calendar start, Calendar Slutt){
         this.dagsform=dagsform;
         this.resultater = resultater;
         this.start = start;

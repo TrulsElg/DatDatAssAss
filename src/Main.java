@@ -1,4 +1,5 @@
 import com.util.DatabaseManager;
+import com.util.TableCreator;
 import com.util.TableManager;
 import implementations.PersonDatabase;
 import java.sql.Date;
@@ -25,8 +26,18 @@ public class Main {
         //pdb.deletePersonTable("Test");
         //pdb.makeQuery("Test");
 		TableManager tbm = new TableManager();
+<<<<<<< HEAD
 		tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
 		//Main tb = new Main();
+=======
+		//tbm.dropTable("prosjekt", "resultater");
+		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
+		TableCreator tblc = new TableCreator();
+		tblc.createTables("prosjekt");
+
+
+        //Main tb = new Main();
+>>>>>>> ede0f7e8583e072035c7e31512a255ae888df2aa
 		//tb.run();
     }
 

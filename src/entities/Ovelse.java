@@ -24,7 +24,7 @@ public class Ovelse {
         return this.beskrivelse;
     }
 
-    public void setNavn(String beskrivelse) {
+    public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse=beskrivelse;
     }
 }

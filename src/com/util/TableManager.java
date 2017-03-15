@@ -7,6 +7,7 @@ import java.sql.*;
 public class TableManager {
 
     public void createTable(String databaseNavn, String sqlString) {
+        //Takes in name of database to create table in and the string of sql commands to create the table with it's values
         Connection connection = null;
         Statement statement = null;
 
@@ -14,6 +15,35 @@ public class TableManager {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement = connection.createStatement();
             statement.execute(sqlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void dropTable(String databaseNavn, String tableNavn) {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = ConnectionConfig.getConnection(databaseNavn);
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE "+tableNavn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
