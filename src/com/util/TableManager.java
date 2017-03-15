@@ -76,7 +76,7 @@ public class TableManager {
             statement = connection.createStatement();
             String sql = "INSERT INTO person " +
                     "VALUES (2,'Mich', 'Hoyer')";
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sqlInsert);
 
 
 
@@ -200,4 +200,37 @@ public class TableManager {
 
         return resultat;
     }
+
+    public void deleteID(String databaseNavn, String tableNavn, int ID){
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection=ConnectionConfig.getConnection(databaseNavn);
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM "+tableNavn+" WHERE id = "+ID);
+
+        }catch (SQLException se) {
+            se.printStackTrace();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

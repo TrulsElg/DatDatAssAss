@@ -14,8 +14,8 @@ public class ObjectAdder {
         int antallOvelser = -1;
         TableManager tblm = new TableManager();
         antallOvelser = tblm.getRowsOfTable("prosjekt", "ovelse");
-        System.out.println("Det finnes "+antallOvelser+" i tabellen ovelser");
 
-
+        String sql = "INSERT INTO ovelse VALUES("+(antallOvelser+1)+",'"+ovelse.getNavn()+"','"+ovelse.getBeskrivelse()+"')";
+        tblm.insertValues("prosjekt",sql);
     }
 }
