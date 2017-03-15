@@ -9,6 +9,12 @@ public class Resultat {
     private int antReps;
     private int antSett;
 
+    public Resultat(int belastning, int antSett, int antReps){
+        this.belastning=belastning;
+        this.antReps=antReps;
+        this.antSett=antSett;
+    }
+
     public int getBelastning() {
         return belastning;
     }

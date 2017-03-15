@@ -1,30 +1,36 @@
 package entities;
-
-import java.sql.Date;
+import java.util.Calendar;
+// import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  * Created by Andreas on 14/03/2017.
  */
 public class Treningsokt {
-    private Date start;
-    private Date slutt;
+    private Calendar start;
+    private Calendar slutt;
     private int dagsform;
-    private ArrayList<Ovelse> ovelse = new ArrayList<Ovelse>();
+    private ArrayList<Resultat> resultater = new ArrayList<Resultat>();
 
-    public Date getStart() {
+    public TreningsOkt(int dagsform, ArrayList<Resultat> resultater, Calendar start, Calendar Slutt){
+        this.dagsform=dagsform;
+        this.resultater = resultater;
+        this.start = start;
+        this.slutt = slutt;
+    }
+    public Calendar getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(Calendar start) {
         this.start = start;
     }
 
-    public Date getSlutt() {
+    public Calendar getSlutt() {
         return slutt;
     }
 
-    public void setSlutt(Date slutt) {
+    public void setSlutt(Calendar slutt) {
         this.slutt = slutt;
     }
 

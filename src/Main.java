@@ -14,7 +14,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        DatabaseManager dbc = new DatabaseManager();
+
+		DatabaseManager dbc = new DatabaseManager();
         //dbc.createDatabase("Test");
         //dbc.deleteDatabase("Test");
         PersonDatabase pdb = new PersonDatabase();
@@ -25,7 +26,7 @@ public class Main {
         //pdb.makeQuery("Test");
 		TableManager tbm = new TableManager();
 		tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
-        //Main tb = new Main();
+		//Main tb = new Main();
 		//tb.run();
     }
 
@@ -69,25 +70,28 @@ public class Main {
 		}
 		
 		public void newSession(){
-	 		Calendar start = Calendar.getInstance();
+			Calendar start = Calendar.getInstance();
 
 			
 			
 			System.out.println("Skriv inn dagsform for treningsøkten som et tall 1-10:\n");
-			String[] session = reader.nextLine().split(",");
-			
+			int dagsform = reader.nextint();
+
 			boolean runWhile =  true;
+			ArrayList<Resultat> results = new ArrayList<Resultat>;
 			while(runWhile){
 				System.out.println("Tast inn nr for øvelse i databasen du ønsker å legge til denne økten:\n"
 						+ line + "\n" +testOvelser); //TODO henting fra SQL
 				int numExercise = reader.nextInt();
 				
-				System.out.println("Skriv inn i følgende format:\n"
-						+ "Belastning,Sett,Reps,Kommentar");
-				String[] resultOvelse = reader.nextLine().split(",");
-				
+				System.out.println("Skriv inn resultat i følgende format:\n"
+						+ "Belastning,Antall Sett,Antall Reps");
+				String[] enkeltResultat = reader.nextLine().split(",");
+
+				results.add(new Resultat(Integer.parseInt(enkeltResultat[0]),Integer.parseInt(enkeltResultat[1]),Integer.parseInt(enkeltResultat[2]))); //int belastning, int antSett, int antReps
 			} //End While
-	 		Calendar slutt = Calendar.getInstance();
+			Calendar slutt = Calendar.getInstance();
+			Treningsokt okt = new Treningsokt(dagsform,results, start, slutt );
 
 		}
 		public void statistics(){
