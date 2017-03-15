@@ -1,6 +1,7 @@
 package com.util;
 
 import entities.Ovelse;
+import entities.Treningsokt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,5 +18,12 @@ public class ObjectAdder {
 
         String sql = "INSERT INTO ovelse VALUES("+(antallOvelser+1)+",'"+ovelse.getNavn()+"','"+ovelse.getBeskrivelse()+"')";
         tblm.insertValues("prosjekt",sql);
+    }
+
+    public void addTreningsokt (Treningsokt tokt) {
+        int antallTreningsokter = -1;
+        TableManager tblm = new TableManager();
+        antallTreningsokter = tblm.getRowsOfTable("prosjekt", "treningsokt");
+
     }
 }

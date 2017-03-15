@@ -32,8 +32,8 @@ public class Main {
 		TableCreator tblc = new TableCreator();
 		tblc.createTables("prosjekt");
 		ObjectAdder oa = new ObjectAdder();
-		Ovelse ovelse = new Ovelse("Benkpress", "Ligg på rygg, løft vektstang rett opp og ned over brystet");
-		oa.addOvelse(ovelse);
+		//Ovelse ovelse = new Ovelse("Knebøy", "Skuldre over knær, gå ned til 90 grader i knærne og opp igjen i en sammenhengende bevegelse.");
+		//oa.addOvelse(ovelse);
 
 
         //Main tb = new Main();
