@@ -4,6 +4,7 @@ import com.util.TableCreator;
 import com.util.TableManager;
 import implementations.PersonDatabase;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 import entities.*;
@@ -16,7 +17,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-
+		TableCreator tblc = new TableCreator();
+		tblc.createTables("prosjekt");
 		DatabaseManager dbc = new DatabaseManager();
         //dbc.createDatabase("Test");
         //dbc.deleteDatabase("Test");
@@ -27,22 +29,18 @@ public class Main {
         //pdb.deletePersonTable("Test");
         //pdb.makeQuery("Test");
 		TableManager tbm = new TableManager();
-<<<<<<< HEAD
 		tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
 		//Main tb = new Main();
-=======
 		//tbm.dropTable("prosjekt", "resultater");
 		//tbm.deleteID("prosjekt", "ovelse",0);
 		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
-		TableCreator tblc = new TableCreator();
-		tblc.createTables("prosjekt");
+
 		ObjectAdder oa = new ObjectAdder();
 		//Ovelse ovelse = new Ovelse("Knebøy", "Skuldre over knær, gå ned til 90 grader i knærne og opp igjen i en sammenhengende bevegelse.");
 		//oa.addOvelse(ovelse);
 
 
         //Main tb = new Main();
->>>>>>> ede0f7e8583e072035c7e31512a255ae888df2aa
 		//tb.run();
     }
 
@@ -91,10 +89,10 @@ public class Main {
 			
 			
 			System.out.println("Skriv inn dagsform for treningsøkten som et tall 1-10:\n");
-			int dagsform = reader.nextint();
+			int dagsform = reader.nextInt();
 
 			boolean runWhile =  true;
-			ArrayList<Resultat> results = new ArrayList<Resultat>;
+			ArrayList<Resultat> results = new ArrayList<Resultat>();
 			while(runWhile){
 				System.out.println("Tast inn nr for øvelse i databasen du ønsker å legge til denne økten:\n"
 						+ line + "\n" +testOvelser); //TODO henting fra SQL
