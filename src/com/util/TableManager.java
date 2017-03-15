@@ -43,7 +43,7 @@ public class TableManager {
         try {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE "+tableNavn);
+            statement.executeUpdate("DROP TABLE " + tableNavn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -76,7 +76,7 @@ public class TableManager {
             statement = connection.createStatement();
             String sql = "INSERT INTO person " +
                     "VALUES (2,'Mich', 'Hoyer')";
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sqlInsert);
 
 
 
@@ -114,7 +114,7 @@ public class TableManager {
             statement=connection.createStatement();
 
             rs = statement.executeQuery(sqlQuery);
-            //tellResultSet(rs);
+            tellResultSet(rs);
 
         } catch (SQLException se){
             se.printStackTrace();
@@ -141,7 +141,52 @@ public class TableManager {
         return rs;
     }
 
-    private void tellResultSet(ResultSet rs) throws SQLException{
+    public int getRowsOfTable(String databaseNavn, String tableNavn){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet rs = null;
+        int rows = 0;
+
+        try {
+            connection = ConnectionConfig.getConnection(databaseNavn);
+            statement=connection.createStatement();
+
+            rs = statement.executeQuery("SELECT * FROM "+tableNavn);
+            rows=tellResultSet(rs);
+
+        } catch (SQLException se){
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement!=null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return rows;
+    }
+
+    public int tellResultSet(ResultSet rs) throws SQLException{
         int resultat= 0;
         if (!rs.next()) {
             //then there are no rows.
@@ -153,6 +198,39 @@ public class TableManager {
             } while (rs.next());
         }
 
-        System.out.println(resultat + " antall resultater");
+        return resultat;
     }
+
+    public void deleteID(String databaseNavn, String tableNavn, int ID){
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection=ConnectionConfig.getConnection(databaseNavn);
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM "+tableNavn+" WHERE id = "+ID);
+
+        }catch (SQLException se) {
+            se.printStackTrace();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

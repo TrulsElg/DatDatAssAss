@@ -1,4 +1,5 @@
 import com.util.DatabaseManager;
+import com.util.ObjectAdder;
 import com.util.TableCreator;
 import com.util.TableManager;
 import implementations.PersonDatabase;
@@ -31,9 +32,13 @@ public class Main {
 		//Main tb = new Main();
 =======
 		//tbm.dropTable("prosjekt", "resultater");
+		//tbm.deleteID("prosjekt", "ovelse",0);
 		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
 		TableCreator tblc = new TableCreator();
 		tblc.createTables("prosjekt");
+		ObjectAdder oa = new ObjectAdder();
+		//Ovelse ovelse = new Ovelse("Knebøy", "Skuldre over knær, gå ned til 90 grader i knærne og opp igjen i en sammenhengende bevegelse.");
+		//oa.addOvelse(ovelse);
 
 
         //Main tb = new Main();
