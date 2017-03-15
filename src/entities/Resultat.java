@@ -16,4 +16,20 @@ public class Resultat {
     public void setBelastning(int belastning) {
         this.belastning = belastning;
     }
+
+    public int getAntReps() {
+        return antReps;
+    }
+
+    public void setAntReps(int antReps) {
+        this.antReps = antReps;
+    }
+
+    public int getAntSett() {
+        return antSett;
+    }
+
+    public void setAntSett(int antSett) {
+        this.antSett = antSett;
+    }
 }
