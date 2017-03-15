@@ -6,15 +6,11 @@ package entities;
 public class Ovelse {
 
     private String navn;
-    private int belastning;
-    private int antReps;
-    private int antSett;
+    private String beskrivelse;
 
-    public Ovelse (String navn, int belastning, int antReps, int antSett) {
+    public Ovelse (String navn,String beskrivelse) {
         this.navn = navn;
-        this.belastning = belastning;
-        this.antReps = antReps;
-        this.antSett = antSett;
+        this.beskrivelse=beskrivelse;
     }
 
     public String getNavn() {
@@ -24,28 +20,11 @@ public class Ovelse {
     public void setNavn(String navn) {
         this.navn = navn;
     }
-
-    public int getBelastning() {
-        return belastning;
+    public String getBeskrivelse() {
+        return this.beskrivelse;
     }
 
-    public void setBelastning(int belastning) {
-        this.belastning = belastning;
-    }
-
-    public int getAntReps() {
-        return antReps;
-    }
-
-    public void setAntReps(int antReps) {
-        this.antReps = antReps;
-    }
-
-    public int getAntSett() {
-        return antSett;
-    }
-
-    public void setAntSett(int antSett) {
-        this.antSett = antSett;
+    public void setNavn(String beskrivelse) {
+        this.beskrivelse=beskrivelse;
     }
 }
