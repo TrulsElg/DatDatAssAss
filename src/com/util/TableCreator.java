@@ -36,7 +36,7 @@ public class TableCreator {
 
             //Oppretter en tabell for treningsøkter
             statement.execute("CREATE TABLE IF NOT EXISTS treningsokt(id INTEGER NOT NULL, dato DATE ," +
-                    " tidStart TIME, tidSlutt TIME, dagsform INTEGER, PRIMARY KEY(id))");
+                    " tidStart TIME, tidSlutt TIME, dagsform INTEGER, notat VARCHAR(500), PRIMARY KEY(id))");
 
             //Oppretter tabell for resultater
             statement.execute("CREATE TABLE IF NOT EXISTS resultater(treningsoktID INTEGER NOT NULL, " +
