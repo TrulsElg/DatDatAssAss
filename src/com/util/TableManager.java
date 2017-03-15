@@ -159,6 +159,13 @@ public class TableManager {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
             if (statement!=null) {
                 try {
                     statement.close();
