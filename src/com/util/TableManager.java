@@ -141,7 +141,7 @@ public class TableManager {
         return rs;
     }
 
-    private void tellResultSet(ResultSet rs) throws SQLException{
+    public int tellResultSet(ResultSet rs) throws SQLException{
         int resultat= 0;
         if (!rs.next()) {
             //then there are no rows.
@@ -153,6 +153,6 @@ public class TableManager {
             } while (rs.next());
         }
 
-        System.out.println(resultat + " antall resultater");
+        return resultat;
     }
 }
