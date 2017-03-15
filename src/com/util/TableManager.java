@@ -7,6 +7,7 @@ import java.sql.*;
 public class TableManager {
 
     public void createTable(String databaseNavn, String sqlString) {
+        //Takes in name of database to create table in and the string of sql commands to create the table with it's values
         Connection connection = null;
         Statement statement = null;
 
