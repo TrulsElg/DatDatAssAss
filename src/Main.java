@@ -4,7 +4,7 @@ import implementations.PersonDatabase;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.Scanner;
-
+import entities.*;
 
 
 public class Main {
@@ -63,8 +63,9 @@ public class Main {
 		
 		public void newExercise(){
 			System.out.println("Registrer ny øvelse på følgende format:\n"
-					+ "Navn,Beskrivelse,Type('U' for Utholdenhet og 'S' for Styrke)");
+					+ "Navn,Beskrivelse");
 			String[] exercise = reader.nextLine().split(",");
+			Ovelse ovelse = new Ovelse(exercise[0], exercise[1]);
 		}
 		
 		public void newSession(){
@@ -72,8 +73,7 @@ public class Main {
 
 			
 			
-			System.out.println("Skriv inn treningsøkten på følgende format:\n"
-					+ "dato,start,slutt,dagsform");
+			System.out.println("Skriv inn dagsform for treningsøkten som et tall 1-10:\n");
 			String[] session = reader.nextLine().split(",");
 			
 			boolean runWhile =  true;
