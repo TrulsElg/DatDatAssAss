@@ -35,14 +35,14 @@ public class TableManager {
         }
     }
 
-    public void dropTable(String databaseNavn) {
+    public void dropTable(String databaseNavn, String tableNavn) {
         Connection connection = null;
         Statement statement = null;
 
         try {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement = connection.createStatement();
-            statement.execute("DROP TABLE resultater");
+            statement.executeUpdate("DROP TABLE "+tableNavn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

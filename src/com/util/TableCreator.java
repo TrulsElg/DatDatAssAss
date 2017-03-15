@@ -22,7 +22,7 @@ public class TableCreator {
     }
 
 
-    public void createTableOvelse(String databaseNavn) {
+    public void createTables(String databaseNavn) {
         Connection connection = null;
         Statement statement = null;
 

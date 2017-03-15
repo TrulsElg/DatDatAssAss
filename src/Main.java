@@ -25,10 +25,10 @@ public class Main {
         //pdb.deletePersonTable("Test");
         //pdb.makeQuery("Test");
 		TableManager tbm = new TableManager();
-		tbm.dropTable("prosjekt");
+		//tbm.dropTable("prosjekt", "resultater");
 		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
 		TableCreator tblc = new TableCreator();
-		tblc.createTableOvelse("prosjekt");
+		tblc.createTables("prosjekt");
 
 
         //Main tb = new Main();
