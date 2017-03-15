@@ -11,15 +11,11 @@ import java.sql.SQLException;
 public class ObjectAdder {
 
     public void addOvelse(Ovelse ovelse){
-        int antallOvelser = 0;
+        int antallOvelser = -1;
         TableManager tblm = new TableManager();
-        String sqlQuery = "SELECT * FROM ovelse>";
-        ResultSet rs = tblm.makeQuery("prosjekt", sqlQuery);
-        try {
-            antallOvelser = tblm.tellResultSet(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Det finnes "+antallOvelser+" i tabellen");
+        antallOvelser = tblm.getRowsOfTable("prosjekt", "ovelse");
+        System.out.println("Det finnes "+antallOvelser+" i tabellen ovelser");
+
+
     }
 }

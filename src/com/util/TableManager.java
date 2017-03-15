@@ -43,7 +43,7 @@ public class TableManager {
         try {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE "+tableNavn);
+            statement.executeUpdate("DROP TABLE " + tableNavn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -114,7 +114,7 @@ public class TableManager {
             statement=connection.createStatement();
 
             rs = statement.executeQuery(sqlQuery);
-            //tellResultSet(rs);
+            tellResultSet(rs);
 
         } catch (SQLException se){
             se.printStackTrace();
@@ -139,6 +139,44 @@ public class TableManager {
         }
 
         return rs;
+    }
+
+    public int getRowsOfTable(String databaseNavn, String tableNavn){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet rs = null;
+        int rows = 0;
+
+        try {
+            connection = ConnectionConfig.getConnection(databaseNavn);
+            statement=connection.createStatement();
+
+            rs = statement.executeQuery("SELECT * FROM "+tableNavn);
+            rows=tellResultSet(rs);
+
+        } catch (SQLException se){
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement!=null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return rows;
     }
 
     public int tellResultSet(ResultSet rs) throws SQLException{
