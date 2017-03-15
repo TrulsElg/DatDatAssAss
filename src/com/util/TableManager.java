@@ -35,6 +35,35 @@ public class TableManager {
         }
     }
 
+    public void dropTable(String databaseNavn) {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = ConnectionConfig.getConnection(databaseNavn);
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE resultater");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public void insertValues(String databaseNavn, String sqlInsert) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

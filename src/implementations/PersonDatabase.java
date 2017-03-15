@@ -17,6 +17,7 @@ public class PersonDatabase {
         try {
             connection = ConnectionConfig.getConnection(databaseNavn);
             statement = connection.createStatement();
+            String sql = "";
             statement.execute("CREATE TABLE IF NOT EXISTS person(id INTEGER not NULL AUTO_INCREMENT, " +
                     "first_name VARCHAR(55), last_name VARCHAR(55), PRIMARY KEY (id))");
         } catch (Exception e) {
