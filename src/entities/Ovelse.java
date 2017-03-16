@@ -5,6 +5,7 @@ package entities;
  */
 public class Ovelse {
 
+    private int id;
     private String navn;
     private String beskrivelse;
 
@@ -26,5 +27,13 @@ public class Ovelse {
 
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse=beskrivelse;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
