@@ -74,11 +74,59 @@ public class TableManager {
             connection=ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
 
             statement = connection.createStatement();
-            String sql = "INSERT INTO person " +
-                    "VALUES (2,'Mich', 'Hoyer')";
             statement.executeUpdate(sqlInsert);
+        }catch (SQLException se) {
+            se.printStackTrace();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            if (connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
+    public void insertStartValues(String sqlUserName, String sqlPassword, String databaseNavn) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Statement statement = null;
+
+        try {
+            connection=ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
+
+            statement = connection.createStatement();
+            String sql = "INSERT ignore INTO ovelse VALUES (1,'Push-ups', 'Du vet hvordan du tar en push-up...')";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO ovelse VALUES (2, 'Benkpress', 'Hvordan å ta benkpress mon tro')";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO ovelse VALUES (3, 'Arnoldpress', 'Google it')";
+            statement.executeUpdate(sql);
+
+            sql = "INSERT ignore INTO treningsokt VALUES (1, '2017-03-15', '12:30:00', '14:00:00', 5, 'æTrene')";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO treningsokt VALUES (2, '2016-03-15', '12:30:00', '14:00:00', 5, 'Skal æ trene?')";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO treningsokt VALUES (3, '2017-03-16', '12:30:00', '14:00:00', 5, 'No har æ trænt')";
+            statement.executeUpdate(sql);
+
+            sql = "INSERT ignore INTO resultater VALUES (1, 2, 40, 12, 3)";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO resultater VALUES (1, 2, 45, 12, 3)";
+            statement.executeUpdate(sql);
+            sql = "INSERT ignore INTO resultater VALUES (1, 2, 50, 12, 3)";
+            statement.executeUpdate(sql);
 
 
         }catch (SQLException se) {

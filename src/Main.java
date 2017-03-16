@@ -48,6 +48,8 @@ public class Main {
 		dbm.createDatabase(sqlBrukerNavn, sqlPassword, databaseNavn);
 		TableCreator tblc = new TableCreator();
 		tblc.createTables(sqlBrukerNavn, sqlPassword, databaseNavn);
+		TableManager tblm = new TableManager();
+		tblm.insertStartValues(sqlBrukerNavn,sqlPassword,databaseNavn);
 
 	}
 
@@ -100,9 +102,9 @@ public class Main {
 		
 		public void progression(String sqlUserName, String sqlPassword, String databaseNavn){
 			TreningsLoggStyrer tls = new TreningsLoggStyrer();
-			ArrayList<Integer> progress = tls.getMaksloftProgress(sqlUserName,sqlPassword,databaseNavn,1);
+			ArrayList<Integer> progress = tls.getMaksloftProgress(sqlUserName,sqlPassword,databaseNavn,2);
 
-			System.out.println(progress);
+			System.out.println("Belastning i kg: "+progress);
 		}
 		
 		
