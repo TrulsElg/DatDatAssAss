@@ -1,10 +1,12 @@
 import com.util.*;
 import implementations.PersonDatabase;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 import entities.*;
+import implementations.TreningsLoggStyrer;
 
 
 public class Main {
@@ -116,8 +118,13 @@ public class Main {
 
 		}
 		public void statistics(){
-			
-			
+			TreningsLoggStyrer tls = new TreningsLoggStyrer();
+			try {
+				System.out.println(tls.getAntallTreningsOkter(30));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 		
 		public void progression(){
