@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Created by Andreas on 14/03/2017.
  */
 public class Treningsokt {
+    private int id;
     private Calendar start;
     private Calendar slutt;
     private int dagsform;
@@ -36,6 +37,14 @@ public class Treningsokt {
 
     public int getDagsform() {
         return dagsform;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setDagsform(int dagsform) {
