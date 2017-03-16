@@ -15,3 +15,5 @@ For å velge øvelse brukes øvelseID som er en int.
 ## Kommentarer
 - Programmet tar inn input til å lage en ny treningsøkt, men dette lagres ikke i databasen. Det er tenkt at
 det gjøres på samme måte som en øvelse blir lagt til.
+- Alternativ 3 viser ikke faktisk statistikk over treningsøkter de siste 30 dagene, men viser antall
+treningsøkter de siste 30 dagene.
