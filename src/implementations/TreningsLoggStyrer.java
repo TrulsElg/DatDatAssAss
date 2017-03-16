@@ -9,7 +9,7 @@ import com.util.TableManager;
 
 public class TreningsLoggStyrer {
 
-  public int getAntallTreningsOkter (int dager) throws SQLException {
+  public int getAntallTreningsOkter (String sqlUserName, String sqlPassword, String databaseNavn, int dager) {
       // Finner dato-grensen
       Calendar today = Calendar.getInstance();            // dato og tid akkurat nå
       today.set(Calendar.DATE, -dager);                  // trekker ifra gitt antall dager
@@ -24,7 +24,7 @@ public class TreningsLoggStyrer {
       int antallTreningsOkter = 0;
 
       try {
-          connection = ConnectionConfig.getConnection("prosjekt");
+          connection = ConnectionConfig.getConnection(sqlUserName,sqlPassword, databaseNavn);
           statement=connection.createStatement();
 
           rs = statement.executeQuery(sqlQuery);
@@ -75,7 +75,7 @@ public class TreningsLoggStyrer {
           return antallTreningsOkter;
       }
 
-    public ArrayList<Integer> getMaksloftProgress(int ovelseID) {
+    public ArrayList<Integer> getMaksloftProgress(String sqlUserName, String sqlPassword, String databaseNavn, int ovelseID) {
 
         ArrayList<Integer> progress = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class TreningsLoggStyrer {
         ResultSet rs = null;
 
         try {
-            connection = ConnectionConfig.getConnection("prosjekt");
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement=connection.createStatement();
             rs = statement.executeQuery(sqlQuery);
 

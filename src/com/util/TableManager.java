@@ -6,13 +6,13 @@ import java.sql.*;
  */
 public class TableManager {
 
-    public void createTable(String databaseNavn, String sqlString) {
+    public void createTable(String sqlUserName, String sqlPassword, String databaseNavn, String sqlString) {
         //Takes in name of database to create table in and the string of sql commands to create the table with it's values
         Connection connection = null;
         Statement statement = null;
 
         try {
-            connection = ConnectionConfig.getConnection(databaseNavn);
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement = connection.createStatement();
             statement.execute(sqlString);
         } catch (Exception e) {
@@ -36,12 +36,12 @@ public class TableManager {
         }
     }
 
-    public void dropTable(String databaseNavn, String tableNavn) {
+    public void dropTable(String sqlUserName, String sqlPassword, String databaseNavn, String tableNavn) {
         Connection connection = null;
         Statement statement = null;
 
         try {
-            connection = ConnectionConfig.getConnection(databaseNavn);
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement = connection.createStatement();
             statement.executeUpdate("DROP TABLE " + tableNavn);
         } catch (Exception e) {
@@ -65,13 +65,13 @@ public class TableManager {
         }
     }
 
-    public void insertValues(String databaseNavn, String sqlInsert) {
+    public void insertValues(String sqlUserName, String sqlPassword, String databaseNavn, String sqlInsert) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Statement statement = null;
 
         try {
-            connection=ConnectionConfig.getConnection(databaseNavn);
+            connection=ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
 
             statement = connection.createStatement();
             String sql = "INSERT INTO person " +
@@ -104,13 +104,13 @@ public class TableManager {
         }
     }
 
-    public ResultSet makeQuery(String databaseNavn, String sqlQuery){
+    public ResultSet makeQuery(String sqlUserName, String sqlPassword, String databaseNavn, String sqlQuery){
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
 
         try {
-            connection = ConnectionConfig.getConnection(databaseNavn);
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement=connection.createStatement();
 
             rs = statement.executeQuery(sqlQuery);
@@ -141,14 +141,14 @@ public class TableManager {
         return rs;
     }
 
-    public int getRowsOfTable(String databaseNavn, String tableNavn){
+    public int getRowsOfTable(String sqlUserName, String sqlPassword, String databaseNavn, String tableNavn){
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
         int rows = 0;
 
         try {
-            connection = ConnectionConfig.getConnection(databaseNavn);
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement=connection.createStatement();
 
             rs = statement.executeQuery("SELECT * FROM "+tableNavn);
@@ -201,12 +201,12 @@ public class TableManager {
         return resultat;
     }
 
-    public void deleteID(String databaseNavn, String tableNavn, int ID){
+    public void deleteID(String sqlUserName, String sqlPassword, String databaseNavn, String tableNavn, int ID){
         Connection connection = null;
         Statement statement = null;
 
         try {
-            connection=ConnectionConfig.getConnection(databaseNavn);
+            connection=ConnectionConfig.getConnection(sqlUserName,sqlPassword,databaseNavn);
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM "+tableNavn+" WHERE id = "+ID);
 

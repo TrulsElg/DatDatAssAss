@@ -9,25 +9,14 @@ import java.sql.Statement;
  */
 public class TableCreator {
 
-    public void createAllTables() {
-        TableManager tbm = new TableManager();
-        String sqlOvelse;
-        String projectName = "prosjekt";
-
-        //Oppretter øvelse-tabell
-        sqlOvelse = "CREATE TABLE IF NOT EXIST ovelse(INT id NOT NULL, navn VARCHAR(50), beskrivelse VARCHAR(500), PRIMARY KEY (id))";
-        tbm.createTable(projectName, sqlOvelse);
 
 
-    }
-
-
-    public void createTables(String databaseNavn) {
+    public void createTables(String sqlUserName, String sqlPassword, String databaseNavn) {
         Connection connection = null;
         Statement statement = null;
 
         try {
-            connection = ConnectionConfig.getConnection(databaseNavn);
+            connection = ConnectionConfig.getConnection(sqlUserName, sqlPassword, databaseNavn);
             statement = connection.createStatement();
 
             //Oppretter en tabell for øvelser

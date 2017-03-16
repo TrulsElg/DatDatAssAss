@@ -11,19 +11,13 @@ import java.sql.SQLException;
  */
 public class ObjectAdder {
 
-    public void addOvelse(Ovelse ovelse){
+    public void addOvelse(String sqlUserName, String sqlPassword, String databaseNavn,Ovelse ovelse){
         int antallOvelser = -1;
         TableManager tblm = new TableManager();
-        antallOvelser = tblm.getRowsOfTable("prosjekt", "ovelse");
+        antallOvelser = tblm.getRowsOfTable(sqlUserName, sqlPassword, databaseNavn, "ovelse");
 
         String sql = "INSERT INTO ovelse VALUES("+(antallOvelser+1)+",'"+ovelse.getNavn()+"','"+ovelse.getBeskrivelse()+"')";
-        tblm.insertValues("prosjekt",sql);
+        tblm.insertValues(sqlUserName, sqlPassword, databaseNavn,sql);
     }
 
-    public void addTreningsokt (Treningsokt tokt) {
-        int antallTreningsokter = -1;
-        TableManager tblm = new TableManager();
-        antallTreningsokter = tblm.getRowsOfTable("prosjekt", "treningsokt");
-
-    }
 }

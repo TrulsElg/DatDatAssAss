@@ -53,7 +53,7 @@ public class Registrator {
 
         System.out.println("\n------------------------------\n");
     }
-    public void newExercise(){
+    public void newExercise(String sqlUserName, String sqlPassword, String databaseNavn){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("-------------------");
@@ -72,7 +72,7 @@ public class Registrator {
         Ovelse ovelse = new Ovelse(navn, beskrivelse);
 
         ObjectAdder oa = new ObjectAdder();
-        oa.addOvelse(ovelse);
+        oa.addOvelse(sqlUserName,sqlPassword, databaseNavn,ovelse);
 
         System.out.println("Du har oprettet øvelsen '" + ovelse.getNavn() + "' med beskrivelsen:\n" + ovelse.getBeskrivelse());
         System.out.println("\n------------------------------\n");

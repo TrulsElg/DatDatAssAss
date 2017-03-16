@@ -1,5 +1,4 @@
 import com.util.*;
-import implementations.PersonDatabase;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,38 +12,44 @@ public class Main {
 	Scanner reader;
 	String testOvelser = "1.Markløft\n2.Benkpress\n3.Knebøy\n4.FapFapFap";
 	String line = "------------------------------------------------------------------------------------------------------";
+	String databaseNavn;
+	public static String sqlBrukerNavn;
+	public static String sqlPassword;
 
 
     public static void main(String[] args) {
-
+		/*
 		DatabaseManager dbc = new DatabaseManager();
-        //dbc.createDatabase("Test");
-        //dbc.deleteDatabase("Test");
         PersonDatabase pdb = new PersonDatabase();
-        //pdb.createPersonTable("Test");
-        //Person person = new Person("Truls","Elgaaen");
-        //pdb.insert("Test");
-        //pdb.deletePersonTable("Test");
-        //pdb.makeQuery("Test");
 		TableManager tbm = new TableManager();
-		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
-		//Main tb = new Main();
-		//tbm.dropTable("prosjekt", "resultater");
-		//tbm.dropTable("prosjekt", "treningsokt");
-		tbm.deleteID("prosjekt", "ovelse",3);
-		//tbm.makeQuery("Test","SELECT id, first_name, last_name FROM person");
-
 		TableCreator tblc = new TableCreator();
-		tblc.createTables("prosjekt");
-
 		ObjectAdder oa = new ObjectAdder();
-		//Ovelse ovelse = new Ovelse("Knebøy", "Skuldre over knær, gå ned til 90 grader i knærne og opp igjen i en sammenhengende bevegelse.");
-		//oa.addOvelse(ovelse);
-
+		*/
 
         Main tb = new Main();
+		tb.init();
 		tb.run();
     }
+
+	private void init() {
+		reader = new Scanner(System.in);
+
+		System.out.print("Skriv inn burkernavn for sql-serveren din: ");
+		sqlBrukerNavn = reader.nextLine();
+		System.out.print("Skriv inn passord for sql-serveren din: ");
+		sqlPassword = reader.nextLine();
+		System.out.print("Skriv inn navnet på databasen din (om den ikke eksisterer blir den opprettet). NB!! Case sensitive. : ");
+		databaseNavn = reader.nextLine();
+
+		System.out.println("Brukernavn: " + sqlBrukerNavn + ". Passord: " + sqlPassword + ". Databasenavn: " + databaseNavn);
+		System.out.println(line);
+
+		DatabaseManager dbm = new DatabaseManager();
+		dbm.createDatabase(sqlBrukerNavn, sqlPassword, databaseNavn);
+		TableCreator tblc = new TableCreator();
+		tblc.createTables(sqlBrukerNavn, sqlPassword, databaseNavn);
+
+	}
 
 
 	public void run(){
@@ -65,11 +70,11 @@ public class Main {
 			switch (tall) {
 				case 1:	reg.nyOkt();
 					break;
-				case 2: reg.newExercise();
+				case 2: reg.newExercise(sqlBrukerNavn,sqlPassword,databaseNavn);
 					break;
-				case 3: statistics();
+				case 3: statistics(sqlBrukerNavn,sqlPassword,databaseNavn);
 					break;
-				case 4: progression();
+				case 4: progression(sqlBrukerNavn,sqlPassword,databaseNavn);
 					break;
 				case 5:
 					System.out.println("Du vil slette en øvelse");
@@ -85,51 +90,17 @@ public class Main {
 		
 
 		
-		public void newSession(){
-			Scanner input = new Scanner(System.in);
 
-			Calendar start = Calendar.getInstance();
-
-			System.out.print("Skriv inn dagsform for treningsøkten som et tall 1-10: ");
-			int dagsform = input.nextInt();
-			System.out.println("Dagsform: "+dagsform);
-
-			System.out.print("Legg til notat om treningsøkten: ");
-			String notat = input.nextLine();
-			System.out.println("Du la til notatet '"+notat+"'");
-
-			boolean runWhile =  true;
-			ArrayList<Resultat> results = new ArrayList<Resultat>();
-			/*
-			while(runWhile){
-				System.out.println("Tast inn nr for øvelse i databasen du ønsker å legge til denne økten:\n"
-						+ line + "\n" +testOvelser); //TODO henting fra SQL
-				int numExercise = reader.nextInt();
-				
-				System.out.println("Skriv inn resultat i følgende format:\n"
-						+ "Belastning,Antall Sett,Antall Reps");
-				String[] enkeltResultat = reader.nextLine().split(",");
-
-				results.add(new Resultat(Integer.parseInt(enkeltResultat[0]),Integer.parseInt(enkeltResultat[1]),Integer.parseInt(enkeltResultat[2]))); //int belastning, int antSett, int antReps
-			} //End While
-			*/
-			Calendar slutt = Calendar.getInstance();
-			//Treningsokt okt = new Treningsokt(dagsform,results, start, slutt );
-
-		}
-		public void statistics(){
+		public void statistics(String sqlUserName, String sqlPassword, String databaseNavn){
 			TreningsLoggStyrer tls = new TreningsLoggStyrer();
-			try {
-				System.out.println(tls.getAntallTreningsOkter(30));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			System.out.println(tls.getAntallTreningsOkter(sqlUserName,sqlPassword,databaseNavn,30));
+
 
 		}
 		
-		public void progression(){
+		public void progression(String sqlUserName, String sqlPassword, String databaseNavn){
 			TreningsLoggStyrer tls = new TreningsLoggStyrer();
-			ArrayList<Integer> progress = tls.getMaksloftProgress(1);
+			ArrayList<Integer> progress = tls.getMaksloftProgress(sqlUserName,sqlPassword,databaseNavn,1);
 
 			System.out.println(progress);
 		}
