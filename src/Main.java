@@ -34,7 +34,7 @@ public class Main {
 	private void init() {
 		reader = new Scanner(System.in);
 
-		System.out.print("Skriv inn burkernavn for sql-serveren din: ");
+		System.out.print("Skriv inn brukernavn for sql-serveren din: ");
 		sqlBrukerNavn = reader.nextLine();
 		System.out.print("Skriv inn passord for sql-serveren din: ");
 		sqlPassword = reader.nextLine();
