@@ -1,5 +1,7 @@
 package com.util;
 
+import entities.Ovelse;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -34,20 +36,46 @@ public class Registrator {
 
         System.out.print("Skriv sluttid for økten (hh:mm): ");
         String endTid = input.nextLine()+":00";
-        System.out.println(startTid+"   "+endTid);
 
 
 
         System.out.print("Skriv inn dagsform for treningsøkten som et tall 1-10: ");
         int dagsform = input.nextInt();
-        System.out.println("Dagsform: " + dagsform);
 
         input.nextLine();
 
         System.out.print("Legg til notat om treningsøkten: ");
         String notat = input.nextLine();
-        System.out.println("Du la til notatet '"+notat+"'");
+
+        System.out.println("Treningsøkten består av:\n" +
+                "Dato: "+date+"\nStarttid: "+startTid+"\nSluttid: "+endTid+"\n" +
+                "Dagsform: "+dagsform+"\nNotat: "+notat);
 
         System.out.println("\n------------------------------\n");
     }
+    public void newExercise(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("-------------------");
+        System.out.println("Registrer ny øvelse");
+        System.out.println("-------------------\n");
+
+        System.out.print("Skriv navnet til øvelsen: ");
+        String navn = scanner.nextLine();
+        //System.out.println("Du ga øvelsen navnet: " + navn);
+
+        System.out.print("Gi øvelsen en beskrivelse: ");
+        String beskrivelse = scanner.nextLine();
+        //System.out.println("Du la til beskrivelsen: '"+beskrivelse+"'");
+
+        //String[] exercise = reader.nextLine().split(",");
+        Ovelse ovelse = new Ovelse(navn, beskrivelse);
+
+        ObjectAdder oa = new ObjectAdder();
+        oa.addOvelse(ovelse);
+
+        System.out.println("Du har oprettet øvelsen '" + ovelse.getNavn() + "' med beskrivelsen:\n" + ovelse.getBeskrivelse());
+        System.out.println("\n------------------------------\n");
+    }
+
 }
