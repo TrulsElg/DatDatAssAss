@@ -10,13 +10,13 @@ import java.sql.Statement;
 public class DatabaseManager {
 
 
-    public void createDatabase(String databaseNavn) {
+    public void createDatabase(String sqlUserName, String sqlPassword, String databaseNavn) {
         Connection connection = null;
         Statement statement =null;
 
 
         try {
-            connection=ConnectionConfig.getConnection("");
+            connection=ConnectionConfig.getConnection(sqlUserName, sqlPassword, "");
             statement=connection.createStatement();
 
             String sql = "CREATE DATABASE IF NOT EXISTS "+databaseNavn;
@@ -47,13 +47,13 @@ public class DatabaseManager {
 
     }
 
-    public void deleteDatabase(String databaseNavn) {
+    public void deleteDatabase(String sqlUserName, String sqlPassword, String databaseNavn) {
         Connection connection = null;
         Statement statement =null;
 
 
         try {
-            connection=ConnectionConfig.getConnection("");
+            connection=ConnectionConfig.getConnection(sqlUserName, sqlPassword, "");
             statement=connection.createStatement();
 
             String sql = "DROP DATABASE IF EXISTS "+databaseNavn;
@@ -81,10 +81,6 @@ public class DatabaseManager {
             }
         }
 
-
-    }
-
-    public void selectDatabase() {
 
     }
 

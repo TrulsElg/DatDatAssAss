@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class ConnectionConfig {
 
-    public static Connection getConnection (String databasenavn) {
+    public static Connection getConnection (String sqlUserName, String sqlPassword, String databasenavn) {
         Connection connection = null;
 
         String dbURL="jdbc:mysql://localhost:3306/"+databasenavn+"?autoReconnect=true&useSSL=false";
