@@ -128,7 +128,10 @@ public class Main {
 		}
 		
 		public void progression(){
-			
+			TreningsLoggStyrer tls = new TreningsLoggStyrer();
+			ArrayList<Integer> progress = tls.getMaksloftProgress(1);
+
+			System.out.println(progress);
 		}
 		
 		
